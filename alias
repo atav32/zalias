@@ -1,0 +1,175 @@
+# Node
+alias npm='sudo npm'
+alias iprotract='node ~/src/z/zumper/www/grunt/node_modules/protractor/bin/elementexplorer.js'
+
+# Directories
+alias components='cd ~/src/z/zumper/www/grunt/components'
+alias images='cd ~/src/z/zumper/www/zapp/frontend/static/img'
+alias partials='cd ~/src/z/zumper/www/zapp/frontend/templates/partials'
+alias protractor='cd ~/src/zumper_code/test/zumper/www/protractor'
+alias templates='cd ~/src/z/zumper/www/zapp/frontend/templates'
+alias tpro='cd ~/src/z/zumper/www/zapp/frontend/templates/pro'
+alias ui='cd ~/src/z/zumper/www/js/ui/directives'
+
+alias cdz='cd ~/src/z'
+alias cdg='cd ~/src/z/zumper/www/grunt/grunt_modules'
+alias cdj='cd ~/src/z/zumper/www/js'
+alias cdl='cd ~/src/z/zumper/www/less/pro'
+alias cdd='cd ~/src/z/zmper/www/js/dora'
+alias cdp='cd ~/src/z/zmper/www/js/pro'
+alias cdt='cd ~/src/zumper_code/test/zumper/www/js/dora/common/directives'
+alias cdn='cd /opt/local/share/nginx/zumper/static/dev'
+alias cdv='cd ~/src/z/zumper/www/zapp/frontend/views'
+
+# Make
+alias run='cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_zapp'
+alias run1='cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_dbs'
+alias run2='cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_lus'
+alias run3='cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_credit'
+alias run4='cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_admin'
+alias makerc='vim ~/src/z/Makefile'
+alias tests='make --directory=~/src/z --makefile=~/src/z/Makefile js_tests'
+alias otests='make --directory=~/src/z --makefile=~/src/z/Makefile obfus_js_tests'
+alias e2e='make --directory=~/src/z --makefile=~/src/z/Makefile e2e_tests'
+alias we2e='make --directory=~/src/z --makefile=~/src/z/Makefile watch_e2e_tests'
+alias wdd='make --directory=~/src/z --makefile=~/src/z/Makefile watch_dora_dev'
+alias wpd='make --directory=~/src/z --makefile=~/src/z/Makefile watch_pro_dev'
+alias compile='make --directory=~/src/z --makefile=~/src/z/Makefile dev-www'
+alias dora='make --directory=~/src/z --makefile=~/src/z/Makefile dora_dev'
+alias pro='make --directory=~/src/z --makefile=~/src/z/Makefile pro_dev'
+alias prod='make --directory=~/src/z --makefile=~/src/z/Makefile dora_prod'
+alias browsersync='make --directory=~/src/z --makefile=~/src/z/Makefile browsersync'
+
+# Nginx
+alias ngxrc='sudo vim /opt/local/etc/nginx/nginx.conf'
+alias ngxlog='tail -f /opt/local/var/log/nginx/access.log'
+alias ngxerror='tail -f /opt/local/var/log/nginx/error.log'
+alias cdngx='cd /opt/local/etc/nginx/'
+alias hupngx='sudo kill -HUP $(cat /opt/local/var/run/nginx/nginx.pid) ; echo "restarting nginx"'
+
+# Git
+alias gg='git get'
+alias gpf='git put -f'
+alias sq='squash'
+
+function squash {
+  git rebase -i HEAD~$1
+}
+
+# Grunt
+function gruf {
+  grunt --gruntfile=$1 $2
+}
+
+# htop
+alias htop='sudo htop'
+
+# Tmux
+function runz {
+  tmux set-option set-remain-on-exit off
+  tmux new-window -n servers 'cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_zapp'
+  tmux split-window -h 'cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_dbs'
+  tmux split-window -h 'cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_lus'
+  tmux split-window -h 'cd ~/src/z ; make --directory=~/src/z --makefile=~/src/z/Makefile run_credit'
+  tmux split-window -h
+  tmux select-layout main-vertical
+}
+
+# Django
+alias kz='pkill -f -l "python.*server"'
+
+# Postgre
+alias db='psql -p 5440 -U postgres -d zumper'
+
+# Rogue Legacy
+alias rogue='cd ~/Library/Application\ Support/RogueLegacyStorageContainer/temp; ls'
+
+
+
+
+
+
+
+
+
+
+
+# Woody's aliases
+
+#alias \=='awk "BEGIN{ print \!* }"'
+alias bz='bzip2'
+alias bzip='bzip2'
+alias bunzip='bunzip2'
+alias ff='find $R -type f | grep \!* | grep -v -e "\.svn\|\.git" -e '"'"'\.\(pyc\|swo\|swp\|o\)$'"'"
+alias flf='find . -type f | grep \!* | grep -v -e "\.svn\|\.git"  -e '"'"'\.\(pyc\|swo\|swp\|o\)$'"'"
+alias g='egrep'
+
+alias lh='ls -lahF'
+alias ll='ls -laF'
+alias ls='ls -FG'
+alias p='ps -u $USER'
+alias select='db -c "select \!*"'
+
+#alias hsave       "history | sed 's/^[^	]*	[^	]*	//' >! ~/.hist.\!*"
+#alias hload       'history -L ~/.hist.\!*'
+
+#alias t           'osascript ~/bin/new_tab.scpt \!*'
+#alias tx          'open ~/Library/Application\ Support/Terminal/\!*.terminal'
+
+alias py='python'
+
+#alias git           'echo "`pwd` : git \!*" >> ~/.git.log ; \git \!*'
+alias gitrhr='git fetch origin ; git reset --hard origin/`git rev-parse --abbrev-ref HEAD`'
+alias taglist='git log --tags --simplify-by-decoration --pretty="format:%ai %d"'
+alias gdiffm='git diff master'
+alias gdiffx='git diff --no-ext-diff'
+# alias ggit='git --work-tree=$HOME --git-dir=/var/gitbak/'
+# alias gitrm="git status | g 'deleted:' | sed 's/.*deleted: *//' | xargs -I% git rm %"
+#alias squash        'git rebase -i HEAD~\!*'
+alias spinmcd='sudo port unload memcached ; sudo port load memcached'
+alias hupnginx='sudo kill -HUP `cat /opt/local/var/run/nginx/nginx.pid`'
+alias pg_log='less /opt/local/var/log/postgresql92/postgres.log'
+alias pg_trunc="sudo -u postgres sh -c '> /opt/local/var/log/postgresql92/postgres.log' ; pg_reload "
+
+alias fixbubble='killall QuickLookUIHelper'
+alias nose='make thrift ; nosetests --logging-level ERROR test/'
+alias cdz='cd ${Z}'
+
+# join every other line
+#alias jeo='sed '"'"'$\\!N;s/\n/ /'"'"
+
+# geocache file swap
+# alias geo='\cp ~/.geocache.\!*.json ~/.geocache.json'
+
+function git {
+  echo "`pwd` : git $*" >> ~/.git.log ; command git "$@"
+}
+
+function geo {
+  \cp ~/.geocache.$1.json ~/.geocache.json
+}
+function geoup {
+  \cp ~/.geocache.json ~/.geocache.$1.json
+}
+function geoj {
+    python ${Z}/zumper/api/util_scripts/geolocate.py --merge "$@"
+}
+
+#
+#alias zab='fab -f ${HOME}/w/devops/zevops/fabric/zbuild_fabfile.py'
+
+function squash {
+  git rebase -i HEAD~$1
+}
+function flf {
+  find . -type f | grep $1 | grep -v -e "\.svn\|\.git"  -e "\.\(pyc\|swo\|swp\|o\)$"
+}
+function ff {
+  find $Z -type f | grep $1 | grep -v -e "\.svn\|\.git"  -e "\.\(pyc\|swo\|swp\|o\)$"
+}
+function slf {
+  find . -type f -not \( -path '*/.git/*' -o -path '*/grunt/*' -o -path '*/.svn/*' -o -path '*-compiled\.*' -o -path 'thrift.generated' -o -path '*.so' -o -path '*.pyc' -o -path '*.a' -o -path '*.zip' -o -path '*.gz' -o -path '*.bz' -o -path '*.bz2' -o -path '*.dmg' -o -path '*.tar' -o -path '*.jpg' \) | sed 's/.*/"&"/g' | xargs grep -I $1
+}
+function sf {
+  find $Z -type f -not \( -path '*/.git/*' -o -path '*/grunt/*' -o -path '*/.svn/*' -o -path '*-compiled\.*' -o -path 'thrift.generated' -o -path '*.so' -o -path '*.pyc' -o -path '*.a' -o -path '*.zip' -o -path '*.gz' -o -path '*.bz' -o -path '*.bz2' -o -path '*.dmg' -o -path '*.tar' -o -path '*.jpg' \) | sed 's/.*/"&"/g' | xargs grep -I $1
+}
